@@ -1,0 +1,90 @@
+$buttonColor: rgb(43, 173, 43);
+$buttonColorHover: rgb(39, 150, 39);
+
+.loggedPageContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .activeAlertContainer {
+        display: flex;
+    }
+    .greetingContainer {
+        padding-top: 50px;
+        text-align: center;
+        width: 100%;
+        font-size: 50px;
+        font-family: Arial, sans-serif;
+        p {
+            font-weight: bold;
+        }
+    }
+    form {
+        width: 100%;
+        margin-top: 50px;
+        background-color: white;
+        border-radius: 25px;
+        padding: 50px;
+        .note {
+            width: 100%;
+            height: 40px;
+            font-size: 20px;
+            border-radius: 0;
+            border: none;
+            border-bottom: 1px solid black;
+            &:focus {
+                outline: none;
+            }
+        }
+        .check {
+            width: 20px;
+            height: 20px;
+        }
+        label {
+            display: flex;
+            place-items: center;
+            font-size: 20px;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            margin-top: 30px;
+            background-color: $buttonColor;
+            height: 50px;
+            width: 100%;
+            border-radius: 30px;
+            color: white;
+            &:hover {
+                background-color: $buttonColorHover;
+            }
+        }
+    }
+    .alertList {
+        margin-top: 20px;
+        padding: 50px;
+        width: 100%;
+        background-color: white;
+        border-radius: 25px;
+        .alertContainer {
+            font-size: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            .alertedUsers {
+                padding-top: 20px;
+                width: 100%;
+            }
+            button {
+                cursor: pointer;
+                border: none;
+                margin-top: 30px;
+                background-color: rgb(204, 25, 25);
+                height: 50px;
+                width: 200%;
+                border-radius: 30px;
+                color: white;
+                &:hover {
+                    background-color: rgb(192, 0, 0);
+                }
+            }
+        }
+    }
+}

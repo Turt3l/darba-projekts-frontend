@@ -1,0 +1,53 @@
+$buttonColor: rgb(43, 173, 43);
+$buttonColorHover: rgb(39, 150, 39);
+.addUserContainer {
+    display: flex;
+    .addUserToggleButton {
+        .buttonContainer {
+            button {
+                background-color: $buttonColor;
+                border: none;
+                width: 200px;
+                height: 40px;
+                color: white;
+                &:hover {
+                    background-color: $buttonColorHover;
+                }
+            }
+        }
+    }
+    .addUserForm {
+        display: none;
+        .addUsername {
+            input {
+                height: 38px;
+                border: none;
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+        .addRole {
+            select {
+                height: 40px;
+                border: none;
+            }
+        }
+        .addUser {
+            button {
+                cursor: pointer;
+                border: none;
+                background-color: $buttonColor;
+                height: 100%;
+                width: 50px;
+                color: white;
+                &:hover {
+                    background-color: $buttonColorHover;
+                }
+            }
+        }
+    }
+    .addUserForm.visible{
+        display: flex;
+    }
+}
