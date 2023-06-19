@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 const USER_OFFLINE_SUBSCRIPTION = gql`
     subscription {
-        userOnline {
+        userOffline {
             isOnline
             username
             pin

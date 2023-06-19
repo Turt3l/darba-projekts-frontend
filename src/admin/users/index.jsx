@@ -6,7 +6,7 @@ import NEW_USER_SUBSCRIPTION from "../../store/newUserSubscription";
 import USER_ONLINE_SUBSCRIPTION from "../../store/userOnlineSubscription";
 import { useEffect, useState } from "react";
 import DELETE_USER_SUBSCRIPTION from "../../store/deleteUserSubscription";
-
+import USER_OFFLINE_SUBSCRIPTION from "../../store/userOfflineSub";
 export default function UserList() {
   const { usersLoading, usersData, usersError } = getUsers("all");
   const [userData, setUserData] = useState(usersData);
@@ -30,7 +30,19 @@ export default function UserList() {
       },
     }
   );
-
+  const {data: offlineData = {}, loading: offlineLoading, loadingError} = useSubscription(USER_OFFLINE_SUBSCRIPTION, {
+    onSubscriptionData: ({subscriptionData}) => {
+      const userOffline = subscriptionData.data.userOffline
+      setUserData((prevData) => {
+        if (prevData) {
+          const updatedUsers = prevData.users.map((user) => user.pin === userOffline.pin ? {...user, isOnline: userOffline.isOnline} : user)
+          return {...prevData, users: updatedUsers}
+        } else {
+          return null
+        }
+      })
+    }
+  })
   const { data: onlineData = {}, loading: onlineLoading } = useSubscription(USER_ONLINE_SUBSCRIPTION, {
     onSubscriptionData: ({ subscriptionData }) => {
       const updatedUser = subscriptionData.data.userOnline;

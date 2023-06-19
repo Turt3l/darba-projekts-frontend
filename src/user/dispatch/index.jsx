@@ -8,7 +8,7 @@ import USER_ONLINE_SUBSCRIPTION from "../../store/userOnlineSubscription";
 import NEW_ALERT_SUBSCRIPTION from "../../store/newAlertSubscription";
 import JOINED_ALERT_SUBSCRIPTION from "../../store/joinedAlertSub";
 import DELETE_ALERT_SUBSCRIPTION from "../../store/deleteAlertSubscription";
-
+import USER_OFFLINE_SUBSCRIPTION from "../../store/userOfflineSub";
 export default function DispatchPanel() {
   const { usersLoading, usersData, usersError } = getUsers("Responder");
   const { alertsLoading, alertsData, alertsError } = GetAlerts();
@@ -82,6 +82,15 @@ export default function DispatchPanel() {
       console.log("User online:", updatedUser);
     },
   });
+  const {data: offlineData = {}, loading: offlineLoading, loadingError} = useSubscription(USER_OFFLINE_SUBSCRIPTION, {
+    onSubscriptionData: ({subscriptionData}) => {
+      const userOffline = subscriptionData.data.userOffline
+      setOnlineUsers((prevData) => {
+        const updatedUsers = prevData.map((user) => user.pin === userOffline.pin ? {...user, isOnline: userOffline.isOnline} : user)
+        return updatedUsers
+      })
+    }
+  })
   const AlertTable = alertedData && alertedData.map(alert => {
     return (
       <div className="alertContainer" key={alert.id}>
